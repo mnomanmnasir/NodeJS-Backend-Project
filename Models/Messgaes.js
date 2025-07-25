@@ -1,0 +1,42 @@
+/* This code snippet is defining a Mongoose schema for a message in a messaging application. Here's a
+breakdown of what each part is doing: */
+const mongoose = require('mongoose');
+
+const messageSchema = new mongoose.Schema({
+    conversation: {
+        type: mongoose.Schema.Types.ObjectId, ref: "Conversation", required: true
+    },
+    send: {
+        type: mongoose.Schema.Types.ObjectId, ref: "User", required: true
+    },
+    reciever: {
+        type: mongoose.Schema.Types.ObjectId, ref: "User", required: true
+    },
+
+    content: {
+        type: String
+    },
+    imageOrVideoUrl: {
+        type: String,
+
+    },
+    contentType: {
+        type: String,
+        enum: ['image', 'video', 'text']
+    },
+    reactions: [
+        {
+            user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+            emoji: String
+        }
+    ],
+    messageStatus:{
+        type:String,
+        default: 'send'
+    },
+
+},{timeStamp: true})
+
+const Message = mongoose.model("Message", messageSchema)
+
+module.exports = Message;
