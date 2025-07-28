@@ -2,7 +2,7 @@
 Mongoose library. Here's a breakdown of what each part of the code is doing: */
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.SchemaType({
+const userSchema = new mongoose.Schema({
     /* This code snippet is defining a field called `phoneNumber` in a Mongoose schema. Here's what each
     property is doing: */
     phoneNumber: {
@@ -20,7 +20,13 @@ const userSchema = new mongoose.SchemaType({
     email: {
         type: String,
         lowercase: true,
-        validate: { validator: function (v) { return /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.test(v); }, message: props => `${props.value} is not a valid email address!` }
+        // validate: { validator: function (v) { return /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.test(v); }, message: props => `${props.value} is not a valid email address!` }
+        validate: {
+            validator: function (v) {
+                return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(v);
+            },
+            message: props => `${props.value} is not a valid email address!`
+        }
     },
     emailOtp: {
         type: String
@@ -31,10 +37,10 @@ const userSchema = new mongoose.SchemaType({
     lastSeen: { type: Date },
     isOnline: { type: Boolean, default: false },
     isVerified: { type: Boolean, default: false },
-    agreed: { type: Boolean, default: false  }
+    agreed: { type: Boolean, default: false }
 
 
-}, {timeStamps: true})
+}, { timeStamps: true })
 
 
 const User = mongoose.model("User", userSchema);
