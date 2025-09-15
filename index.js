@@ -5,6 +5,8 @@ const dotenv = require("dotenv");
 const connectDb = require("./Config/DbConnect");
 const bodyParser = require('body-parser')
 const authRoute = require('./routes/authRoute')
+const chatRoute = require('./routes/chatRoute')
+
 dotenv.config()
 
 
@@ -21,7 +23,7 @@ connectDb()
 
 //Routes
 app.use('/api/auth', authRoute)
-
+app.use('/api/chat', chatRoute)
 
 
 app.listen(PORT, () => {

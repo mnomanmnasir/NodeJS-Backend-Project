@@ -9,8 +9,8 @@ const conversationSchema = new mongoose.Schema({
         }
     ],
     lastMessage: { type: mongoose.Schema.ObjectId, ref: 'Message' },
-    unreadCount:{type:Number, default:0 }
-},{timeStamp: true})
+    unreadCount: { type: Number, default: 0 }
+}, { timeStamp: true })
 
 const Conversation = mongoose.model("Conversation", conversationSchema)
 
