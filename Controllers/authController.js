@@ -7,8 +7,7 @@ const otpGenerator = require("../utils/otpGenerator");
 const response = require('../utils/responseHandler')
 const generateToken = require('../utils/generateToken')
 const Conversation = require('../Models/Conversation')
-
-//Step-1 Send OTP
+// Step-1 Send OTP
 /**
  * The function `sendOtp` is an asynchronous function that generates and sends an OTP (One Time
  * Password) to either an email address or a phone number based on the provided request data.
